@@ -32,11 +32,6 @@
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); 
             background: #10b981;
         }
-        .glass {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
         .custom-time-input::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
@@ -44,12 +39,8 @@
     </style>
 </head>
 <body>
-    <div id="root">
-        <!-- Loading state (HTML biasa, bukan JSX) -->
-        <div class="flex items-center justify-center min-h-screen bg-[#0a0a0a]">
-            <div class="text-purple-500 font-black animate-pulse uppercase tracking-[0.3em] text-xs">Initializing Nikolai System...</div>
-        </div>
-    </div>
+    <!-- Loading state (hanya kelihatan jika React tak start) -->
+    <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
@@ -283,4 +274,13 @@
                                                             <div className="flex flex-col items-end gap-1">
                                                                 <div className="text-emerald-500">
                                                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                                                       
+                                                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                                                    </svg>
+                                                                </div>
+                                                                <div className="flex items-center gap-1.5 bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20">
+                                                                    <input 
+                                                                        type="time" 
+                                                                        disabled={isLocked}
+                                                                        value={new Date(timestamp).toTimeString().slice(0,5)}
+                                                                        onChange={(e) => manualTimeChange(key, e.target.value)}
+                                                                        className="bg-transparent text-[10px] font-black text-em
